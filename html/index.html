@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8" />
+    <title>demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="./js/jquery-1.12.4.min.js"></script>
+</head>
+<body>
+    <input type="button" id="swipeIDCard" value="读取身份证" />
+    <input type="button" id="getExamData" value="读取SQLite数据库" />
+    <input type="button" id="ajaxCrossDomain" value="跨域访问" />
+    <div id="result"></div>
+    <script>
+        $('#swipeIDCard').click(function(){
+            window.external.SwipeIDCard('{"name":"test"}');
+        });
+        function swipeIDCard(str){
+            $('#result').html('<h1>'+new Date()+'</h1>');
+            var json = $.parseJSON(str);
+            for(var i in json){
+                $('#result').append('<h1>【'+i+'】：'+json[i]+'</h1>');
+            }
+        };
+        
+        $('#getExamData').click(function(){
+            window.external.GetExamData('SELECT * FROM ylyq_peis_exam_elder');
+        });
+        function getExamData(str){
+            $('#result').html('<h1>'+new Date()+'</h1>');
+            var json = $.parseJSON(str);
+            for(var i in json){
+                $('#result').append('<h1>'+json[i].id+'，'+json[i].exam_no+'，'+json[i].real_name+'，'+json[i].sex+'，'+json[i].age+'</h1>');
+            }
+        };
+        
+        $('#ajaxCrossDomain').click(function(){
+            window.external.AjaxGet('https://mall.jinqiaochuanmei.com/api/v1/page/banner/index');
+        });
+        function ajaxGet(str){
+            var json = $.parseJSON(str);
+            for(var i in json){
+                $('#result').append('<h1>【'+i+'】：'+json[i]+'</h1>');
+            }
+        }
+        
+        
+    </script>
+</body>
+</html>
+

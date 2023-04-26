@@ -116,10 +116,14 @@ namespace Com.Xuqingkai
 				{
 					result = new System.IO.StreamReader(httpWebResponse.GetResponseStream(), System.Text.Encoding.GetEncoding("UTF-8")).ReadToEnd();
 				}
+				else
+				{
+					result = "HttpGetError:" + webException.Message;
+				}
 			}
 			catch (System.Exception ex)
 			{
-				result = "HttpGet:" + ex.Message;
+				result = "HttpGetError:" + ex.Message;
 				//result = null;
 			}
             return result;
@@ -153,9 +157,10 @@ namespace Com.Xuqingkai
             return result;
 		}
         
-        public void AjaxGet(object url){
-            string response = HttpGet(url.ToString());
-            InvokeScript("ajaxGet", response);
+        public async void AjaxGet(object url){
+			System.Threading.Tasks.Task<string> httpGet = System.Threading.Tasks.Task.Run(() => { return HttpGet(url.ToString()); });
+            string response = await httpGet;
+			InvokeScript("ajaxGet", response);
         }
         
         public string AjaxPost(object url, object data){

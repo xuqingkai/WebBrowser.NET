@@ -35,12 +35,23 @@
         };
         
         $('#ajaxCrossDomain').click(function(){
-            window.external.AjaxGet('https://mall.jinqiaochuanmei.com/api/v1/page/banner/index');
+            $('#result').html('<h1>异步请求中，，，请耐心等待</h1>');
+            window.external.AjaxGet('https://xuqingkai.gitee.io/html/json/list.json');
         });
         function ajaxGet(str){
-            var json = $.parseJSON(str);
-            for(var i in json){
-                $('#result').append('<h1>【'+i+'】：'+json[i]+'</h1>');
+            $('#result').html('<h1>'+new Date()+'</h1>');
+            if(str.indexOf('HttpGetError:')==0){
+                $('#result').append(str.substr(13));
+            }else{
+                var json = $.parseJSON(str);
+                for(var i in json){
+                    $('#result').append('<h1>【'+i+'】：'+json[i]+'</h1>');
+                }
+                for(var i in json.data){
+                    for(var j in json.data[i]){
+                        $('#result').append('<h1>【'+j+'】：'+json.data[i][j]+'</h1>');
+                    }
+                }
             }
         }
         

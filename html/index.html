@@ -21,6 +21,7 @@
             for(var i in json){
                 $('#result').append('<h1>【'+i+'】：'+json[i]+'</h1>');
             }
+            return 1;
         };
         
         $('#getExamData').click(function(){
@@ -32,6 +33,7 @@
             for(var i in json){
                 $('#result').append('<h1>'+json[i].id+'，'+json[i].exam_no+'，'+json[i].real_name+'，'+json[i].sex+'，'+json[i].age+'</h1>');
             }
+            return 1;
         };
         
         $('#ajaxCrossDomain').click(function(){
@@ -53,6 +55,7 @@
                     }
                 }
             }
+            return 1;
         }
         Date.prototype.format = function(format) {
             var o = {

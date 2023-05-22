@@ -13,7 +13,7 @@
     <div id="result"></div>
     <script>
         $('#swipeIDCard').click(function(){
-            window.external.SwipeIDCard('{"name":"test"}');
+            window.external.swipeIDCard('{"name":"test"}');
         });
         function swipeIDCard(str){
             $('#result').html('<h1>'+new Date().format("yyyy-MM-dd hh:mm:ss")+'</h1>');
@@ -25,7 +25,7 @@
         };
         
         $('#getExamData').click(function(){
-            window.external.GetExamData('SELECT * FROM ylyq_peis_exam_elder');
+            window.external.getExamData('SELECT * FROM ylyq_peis_exam_elder');
         });
         function getExamData(str){
             $('#result').html('<h1>'+new Date().format("yyyy-MM-dd hh:mm:ss")+'</h1>');
@@ -38,7 +38,7 @@
         
         $('#ajaxCrossDomain').click(function(){
             $('#result').html('<h1>异步请求中，，，请耐心等待</h1>');
-            window.external.AjaxGet('https://xuqingkai.gitee.io/html/json/list.json');
+            window.external.ajaxGet('https://xuqingkai.gitee.io/html/json/list.json');
         });
         function ajaxGet(str){
             $('#result').html('<h1>'+new Date().format("yyyy-MM-dd hh:mm:ss")+'</h1>');

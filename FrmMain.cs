@@ -59,7 +59,7 @@ namespace Com.Xuqingkai
 			btnSwipeIDCard.Size = new System.Drawing.Size(100, 30);
 			btnSwipeIDCard.UseVisualStyleBackColor = true;
 			btnSwipeIDCard.Click += new System.EventHandler(delegate(object sender, EventArgs e){
-				SwipeIDCard("{\"exam_name\":\"测试员\",\"exam_sex\":\"男\",\"exam_age\":66,\"exam_birthday\":\"1955-05-05\",\"idcard_no\":\"3708311905051239\",\"create_time\":\"" + System.DateTime.Now + "\"}");
+				swipeIDCard("{\"exam_name\":\"测试员\",\"exam_sex\":\"男\",\"exam_age\":66,\"exam_birthday\":\"1955-05-05\",\"idcard_no\":\"3708311905051239\",\"create_time\":\"" + System.DateTime.Now + "\"}");
    			});
 			this.Controls.Add(btnSwipeIDCard);
             
@@ -75,7 +75,7 @@ namespace Com.Xuqingkai
    			});
 			this.Controls.Add(btnInsertScript);
         }
-		public void SwipeIDCard(string info)
+		public void swipeIDCard(string info)
 		{
 			InvokeScript("swipeIDCard", info);
 		}
@@ -157,16 +157,16 @@ namespace Com.Xuqingkai
             return result;
 		}
         
-        public async void AjaxGet(object url){
+        public async void ajaxGet(object url){
 			System.Threading.Tasks.Task<string> httpGet = System.Threading.Tasks.Task.Run(() => { return HttpGet(url.ToString()); });
             string response = await httpGet;
 			InvokeScript("ajaxGet", response);
         }
         
-        public string AjaxPost(object url, object data){
+        public string ajaxPost(object url, object data){
             return null;
         }
-        public string AjaxJSON(object url, object data){
+        public string ajaxJSON(object url, object data){
             return null;
         }
         
@@ -235,7 +235,7 @@ namespace Com.Xuqingkai
         {
             return DataTable(sql, parameters).Rows;
         }
-        public void GetExamData(object sql)
+        public void getExamData(object sql)
 		{
 			string rows = null;
 			System.Data.DataRowCollection drc = DataRows("" + sql);
